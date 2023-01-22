@@ -1,0 +1,49 @@
+
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class VotingData {
+
+    LinkedList<String> ballot = new LinkedList<String>();
+    LinkedList<String> votes = new LinkedList<String>();
+    Scanner keyboard = new Scanner(System.in);
+
+    VotingData() {
+        this.ballot.add("Gompei");
+        this.ballot.add("Husky");
+    }
+
+    public void printBallot() {
+        System.out.println("The candidates are ");
+        for (String s : ballot) {
+            System.out.println(s);
+        }
+    }
+
+    public void screen() {
+        this.printBallot();
+        System.out.println("Who do you want to vote for?");
+        String candidate = keyboard.next();
+        votes.add(candidate);
+        System.out.println("You voted for " + candidate);
+    }
+
+    public int countVotes(String forcand) {
+        int numvotes = 0;
+        for (String s : votes) {
+            if (s.equals(forcand))
+                numvotes = numvotes+1;
+        }
+        return numvotes;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        VotingData vd = new VotingData();
+        vd.screen();
+        System.out.println("Votes for Gompei: " + vd.countVotes("Gompei"));
+        System.out.println("Votes for Husky: " + vd.countVotes("Husky"));
+    }
+}
